@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Vekarus Monitor</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" type="image/png" href="static/favicon.png"/>
+		<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+	</head>
+
+	<body>
+
+		<h3>Status:</h3>
+
+		<table>
+			<tr>
+				<td>Time:</td>
+				<td>{{status.time}}</td>
+			</tr>
+			<tr>
+				<td>Address:</td>
+				<td>{{status.addr}}</td>
+			</tr>
+			<tr>
+				<td>Netmask:</td>
+				<td>{{status.netmask}}</td>
+			</tr>
+			<tr>
+				<td>Gateway:</td>
+				<td>{{status.gateway}}</td>
+			</tr>
+			<tr>
+				<td>Interface:</td>
+				<td>{{status.interface}}</td>
+			</tr>
+		</table>
+
+  </body>
+</html>
