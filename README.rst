@@ -1,1 +1,4 @@
-# vekarus
+MyHome
+======
+
+Home automation application.
