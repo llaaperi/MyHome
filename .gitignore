@@ -3,3 +3,4 @@
 *.pyc
 *.egg-info
 myhome.tar.gz
+env/
