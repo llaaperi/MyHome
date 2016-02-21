@@ -1,0 +1,5 @@
+#MyHome
+.DS_Store
+*.pyc
+*.egg-info
+myhome.tar.gz
