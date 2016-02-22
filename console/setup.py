@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!../env/bin/python
 
 from setuptools import setup, find_packages
 
@@ -22,7 +22,7 @@ setup(	name = 'MyHomeConsole',
 		]},
 		include_package_data = True,
 		install_requires = [
-			'uwsgi',
+			'eventlet',
 			'flask', 
 			'SQLAlchemy',
 			'Flask-SQLAlchemy',
@@ -30,6 +30,7 @@ setup(	name = 'MyHomeConsole',
 			'Flask-Login',
 			'Flask-WTF',
 			'Flask-Restplus',
+			'flask-socketio',
 			'psycopg2',
 			'passlib',
 			'requests'

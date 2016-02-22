@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Vekarus Monitor</title>
+		<title>MyHome</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" type="image/png" href="static/favicon.png"/>
 		<link rel="stylesheet" type="text/css" href="static/css/styles.css">
@@ -13,25 +13,48 @@
 		<table>
 			<tr>
 				<td>Time:</td>
-				<td>{{status.time}}</td>
+				<td id="time"></td>
 			</tr>
 			<tr>
 				<td>Address:</td>
-				<td>{{status.addr}}</td>
+				<td id="address"></td>
 			</tr>
 			<tr>
 				<td>Netmask:</td>
-				<td>{{status.netmask}}</td>
+				<td id="netmask"></td>
 			</tr>
 			<tr>
 				<td>Gateway:</td>
-				<td>{{status.gateway}}</td>
+				<td id="gateway"></td>
 			</tr>
 			<tr>
 				<td>Interface:</td>
-				<td>{{status.interface}}</td>
+				<td id="interface"></td>
 			</tr>
 		</table>
 
-  </body>
+	</body>
+
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+			var socket = io.connect('ws://' + document.domain + ':' + location.port + '/test', {transports:['websocket']});
+			//var socket = io.connect('ws://' + document.domain + ':' + location.port + '/test');
+			console.log(socket);
+
+			socket.on('status', function(status) {
+				//console.log(status)
+				$('#time').text(status.time);
+				$('#address').text(status.address);
+				$('#netmask').text(status.netmask);
+				$('#gateway').text(status.gateway);
+				$('#interface').text(status.interface);
+			});
+
+		});
+
+	</script>
+
 </html>

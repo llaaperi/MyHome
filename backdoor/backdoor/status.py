@@ -9,7 +9,7 @@ from . import app, api
 ns = api.namespace('status', 'Status')
 
 status_model = api.model('Status',{
-	'addr': fields.String(default='Unknown'),
+	'address': fields.String(default='Unknown'),
 	'netmask': fields.String(default='Unknown'),
 	'gateway': fields.String(default='Unknown'),
 	'interface': fields.String(default='Unknown'),
@@ -32,7 +32,7 @@ class Status(Resource):
 
 		status = {}
 		if addrs is not None and len(addrs[netifaces.AF_INET]) > 0:
-			status['addr'] = addrs[netifaces.AF_INET][0].get('addr')
+			status['address'] = addrs[netifaces.AF_INET][0].get('addr')
 			status['netmask'] = addrs[netifaces.AF_INET][0].get('netmask')
 
 		gw = netifaces.gateways().get('default')
@@ -41,6 +41,7 @@ class Status(Resource):
 			status['gateway'] = addr
 			status['interface'] = iface
 
-		status['time'] = datetime.datetime.now()
+		status['time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+		#status['time'] = datetime.datetime.now()
 
 		return status
