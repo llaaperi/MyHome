@@ -60,6 +60,8 @@ fi
 if [ "$APP" = "console" ]; then
 	echo "$(tput setaf 3)Uninstalling old version$(tput sgr0)"
 	$INSTALL_DIR/env/bin/pip uninstall -y MyHomeConsole
+
+	#sudo rabbitmq-server -detached
 fi
 
 #Python install

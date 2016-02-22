@@ -29,6 +29,8 @@ echo "$(tput setaf 3)Installing Autossh$(tput sgr0)"
 sudo apt-get install -y autossh
 echo "$(tput setaf 3)Autossh installed$(tput sgr0)"
 
+#sudo apt-get install -y rabbitmq-server
+
 #Virtualenv
 echo "$(tput setaf 3)Installing virtualenv$(tput sgr0)"
 sudo pip install virtualenv
