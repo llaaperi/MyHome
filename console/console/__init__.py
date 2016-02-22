@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, async_mode='eventlet')
 
-import status
+import backdoor
 
 eventlet.monkey_patch()
 
@@ -23,16 +23,16 @@ def background_thread():
 	while True:
 		time.sleep(2)
 		try:
-			socketio.emit('status', status.get_status(), namespace='/test')
+			socketio.emit('status', backdoor.get_status(), namespace='/status')
 		except:
-			pass
+			socketio.emit('status', None, namespace='/status')
 
 
 @app.route('/')
 def index():
 	return render_template('index.html')
 
-@socketio.on('connect', namespace='/test')
+@socketio.on('connect', namespace='/status')
 def test_connect():
 	print 'Connect'
 	global thread
@@ -40,8 +40,7 @@ def test_connect():
 		thread = Thread(target=background_thread)
 		thread.daemon = True
 		thread.start()
-	emit('status', {'data': 'Connected'})
 
-@socketio.on('disconnect', namespace='/test')
+@socketio.on('disconnect', namespace='/status')
 def test_disconnect():
 	print('Client disconnected')

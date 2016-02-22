@@ -8,9 +8,11 @@
 
 	<body>
 
-		<h3>Status:</h3>
-
 		<table>
+			<tr>
+				<td><h3>Status:</h3></td>
+				<td id="status"><h3>offline <img src="static/icon/status-offline.ico" alt="Smiley face" height="12" width="12"></h3></td>
+			</tr>
 			<tr>
 				<td>Time:</td>
 				<td id="time"></td>
@@ -40,17 +42,23 @@
 	<script type="text/javascript">
 
 		$(document).ready(function(){
-			var socket = io.connect('ws://' + document.domain + ':' + location.port + '/test', {transports:['websocket']});
-			//var socket = io.connect('ws://' + document.domain + ':' + location.port + '/test');
+
+			var socket = io.connect('ws://' + document.domain + ':' + location.port + '/status', {transports:['websocket']});
+			//var socket = io.connect('ws://' + document.domain + ':' + location.port + '/status');
 			console.log(socket);
 
 			socket.on('status', function(status) {
 				//console.log(status)
-				$('#time').text(status.time);
-				$('#address').text(status.address);
-				$('#netmask').text(status.netmask);
-				$('#gateway').text(status.gateway);
-				$('#interface').text(status.interface);
+				if(status){
+					$("#status").html('<h3>online <img src="static/icon/status-online.ico" alt="Smiley face" height="12" width="12"></h3>');
+					$('#time').text(status.time);
+					$('#address').text(status.address);
+					$('#netmask').text(status.netmask);
+					$('#gateway').text(status.gateway);
+					$('#interface').text(status.interface);
+				}else{
+					$("#status").html('<h3>offline <img src="static/icon/status-offline.ico" alt="Smiley face" height="12" width="12"></h3>');
+				}
 			});
 
 		});
