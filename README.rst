@@ -1,4 +1,4 @@
 MyHome
 ======
 
-Home automation application.
+Home automation application for remote access.
